@@ -1,0 +1,181 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #f5f1e9;
+  --sf: #fffdf8;
+  --ac: #62745b;
+  --on: #fffdf8;
+  --tx: #302d28;
+  --mu: #8b8174;
+  --bd: rgba(79, 67, 50, 0.11);
+  --sep: rgba(79, 67, 50, 0.12);
+  --fill: #eee8dd;
+  --fill2: #e4dacb;
+  --tile: 60px;
+  --gap: 18px;
+  --fs: 13px;
+  --ts: 1;
+}
+
+[data-t="dark"] {
+  --bg: #181c18;
+  --sf: #222822;
+  --ac: #a3b899;
+  --on: #1c251a;
+  --tx: #f1eee6;
+  --mu: #a8b0a1;
+  --bd: rgba(222, 226, 208, 0.12);
+  --sep: rgba(222, 226, 208, 0.1);
+  --fill: #2d362d;
+  --fill2: #384338;
+}
+
+[data-dark="black"][data-t="dark"] {
+  --bg: #000000;
+  --sf: #0f120f;
+  --fill: #1a201a;
+  --fill2: #242c24;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  background-color: var(--bg);
+  color: var(--tx);
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Background Wallpapers */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  transition: opacity 0.5s ease;
+}
+
+body[data-bgfx="aurora"]::before {
+  background: radial-gradient(ellipse at 8% 0%, color-mix(in srgb, var(--ac) 24%, transparent), transparent 48%),
+              radial-gradient(ellipse at 95% 30%, color-mix(in srgb, var(--ac) 18%, transparent), transparent 42%),
+              radial-gradient(ellipse at 50% 100%, color-mix(in srgb, var(--ac) 12%, transparent), transparent 50%);
+}
+
+body[data-bgfx="glow"]::before {
+  background: radial-gradient(ellipse at 50% -5%, color-mix(in srgb, var(--ac) 30%, transparent), transparent 60%);
+}
+
+body[data-bgfx="mesh"]::before {
+  background: radial-gradient(at 15% 10%, color-mix(in srgb, var(--ac) 25%, transparent), transparent 45%),
+              radial-gradient(at 85% 20%, color-mix(in srgb, #e8b070 20%, transparent), transparent 45%),
+              radial-gradient(at 70% 90%, color-mix(in srgb, #6090e0 18%, transparent), transparent 50%),
+              radial-gradient(at 10% 80%, color-mix(in srgb, var(--ac) 20%, transparent), transparent 45%);
+}
+
+body[data-bgfx="sunset"]::before {
+  background: linear-gradient(180deg, rgba(80, 50, 120, 0.15) 0%, rgba(200, 70, 110, 0.16) 40%, rgba(240, 140, 60, 0.18) 75%, rgba(255, 210, 100, 0.15) 100%);
+}
+
+body[data-bgfx="midnight"]::before {
+  background: radial-gradient(1.5px 1.5px at 15% 15%, #fff, transparent),
+              radial-gradient(1px 1px at 30% 35%, #fff, transparent),
+              radial-gradient(2px 2px at 75% 20%, #fff, transparent),
+              radial-gradient(1px 1px at 85% 45%, #fff, transparent),
+              linear-gradient(180deg, rgba(10, 15, 35, 0.35) 0%, rgba(25, 20, 50, 0.2) 100%);
+}
+
+body[data-bgfx="oceanbg"]::before {
+  background: linear-gradient(180deg, rgba(30, 140, 180, 0.12) 0%, rgba(20, 90, 150, 0.2) 60%, rgba(10, 40, 90, 0.3) 100%);
+}
+
+body[data-bgfx="forestbg"]::before {
+  background: linear-gradient(180deg, rgba(80, 140, 70, 0.12) 0%, rgba(40, 90, 40, 0.22) 100%);
+}
+
+body[data-bgfx="candy"]::before {
+  background: radial-gradient(circle at 15% 15%, rgba(255, 120, 180, 0.18), transparent 40%),
+              radial-gradient(circle at 85% 25%, rgba(100, 200, 255, 0.16), transparent 40%),
+              radial-gradient(circle at 50% 85%, rgba(255, 220, 100, 0.16), transparent 45%);
+}
+
+body[data-bgfx="grain"]::before {
+  background-image: radial-gradient(color-mix(in srgb, var(--tx) 8%, transparent) 0.8px, transparent 0.9px);
+  background-size: 5px 5px;
+}
+
+body[data-bgfx="dots"]::before {
+  background-image: radial-gradient(color-mix(in srgb, var(--ac) 28%, transparent) 1.2px, transparent 1.4px);
+  background-size: 22px 22px;
+}
+
+body[data-bgfx="grid"]::before {
+  background: linear-gradient(color-mix(in srgb, var(--tx) 6%, transparent) 1px, transparent 1px),
+              linear-gradient(90deg, color-mix(in srgb, var(--tx) 6%, transparent) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+body[data-bgfx="photo"]::before {
+  background: var(--wall, none) center/cover no-repeat;
+}
+
+/* Animations for Icon Motion */
+@keyframes mFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes mAlive {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-3px) rotate(0.8deg); }
+  50% { transform: translateY(-5px) rotate(0deg); }
+  75% { transform: translateY(-2px) rotate(-0.8deg); }
+}
+
+@keyframes mBreathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.045); }
+}
+
+@keyframes mJelly {
+  0%, 100% { transform: scale(1, 1); }
+  25% { transform: scale(1.05, 0.95); }
+  50% { transform: scale(0.96, 1.04); }
+  75% { transform: scale(1.02, 0.98); }
+}
+
+@keyframes mPulseSubtle {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+@keyframes mBubbly {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(3px, -4px) scale(1.02, 0.98); }
+  66% { transform: translate(-3px, -2px) scale(0.98, 1.02); }
+}
+
+.animate-float { animation: mFloat 4.2s ease-in-out infinite; }
+.animate-alive { animation: mAlive 4.8s ease-in-out infinite; }
+.animate-breathe { animation: mBreathe 4s ease-in-out infinite; }
+.animate-jelly { animation: mJelly 3.6s ease-in-out infinite; }
+.animate-bubbly { animation: mBubbly 5s ease-in-out infinite; }
+.animate-pulse-subtle { animation: mPulseSubtle 3s ease-in-out infinite; }
+
+/* Hide scrollbars but allow scrolling */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

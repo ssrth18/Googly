@@ -1,0 +1,6 @@
+{
+  "name": "Little Space — Native Bookmarks & Launchpad",
+  "description": "A fast, buttery-smooth native launchpad for your bookmarks and mindful saved reading list with offline caching, aesthetic themes, and instant search.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
